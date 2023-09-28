@@ -11,5 +11,4 @@ public class HacktoberfestPictureboxdApplication {
   public static void main(String[] args) {
     SpringApplication.run(HacktoberfestPictureboxdApplication.class, args);
   }
-
 }
