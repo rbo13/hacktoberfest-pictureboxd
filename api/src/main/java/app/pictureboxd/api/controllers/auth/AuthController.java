@@ -25,7 +25,7 @@ public class AuthController {
   @PostMapping(path = "/signup", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<AuthenticationResponseDto> signup(@RequestBody SignupRequestDto request) {
     var createdUser = authenticationService.signup(request);
-    return new ResponseEntity<>(createdUser, null, HttpStatus.CREATED);
+    return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
   }
 
   @PostMapping(path = "/signin", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
