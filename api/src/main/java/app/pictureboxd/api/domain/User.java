@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 public class User implements UserDetails {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.UUID)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
 
   @Column(name = "email_address", nullable = false, unique = true)
