@@ -31,11 +31,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
   @Override
   public AuthenticationResponseDto signup(SignupRequestDto request) {
-    Role role = roleRepository.findByTitle(request.getRole()).orElseThrow();
+    String defaultRole = "USER";
+    if (request.getRole() != null) {
+      defaultRole = request.getRole();
+    }
+
+    Role role = roleRepository.findByTitle(defaultRole).orElseThrow();
+    String hashedPassword = passwordEncoder.encode(request.getPassword());
 
     User user = User.builder()
         .emailAddress(request.getEmailAddress())
-        .password(passwordEncoder.encode(request.getPassword()))
+        .password(hashedPassword)
         .role(role)
         .build();
 

@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS "_movies" (
   "plot" TEXT NOT NULL,
   "rating" FLOAT NOT NULL,
   "release_date" TEXT NOT NULL,
+  "poster_path" TEXT NULL,
   "created_at" TIMESTAMP NOT NULL DEFAULT current_timestamp
 );
 
