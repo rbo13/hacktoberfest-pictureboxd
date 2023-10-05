@@ -39,26 +39,26 @@ CREATE TABLE IF NOT EXISTS "_genres" (
   "created_at" TIMESTAMP NOT NULL DEFAULT current_timestamp
 );
 
-CREATE TABLE IF NOT EXISTS "movie_actors" (
+CREATE TABLE IF NOT EXISTS "_movie_actors" (
+  "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   "movie_id" UUID NOT NULL,
   "actor_id" UUID NOT NULL,
-  PRIMARY KEY ("movie_id", "actor_id"),
   FOREIGN KEY ("movie_id") REFERENCES "_movies" ("id"),
   FOREIGN KEY ("actor_id") REFERENCES "_actors" ("id")
 );
 
-CREATE TABLE IF NOT EXISTS "movie_genres" (
+CREATE TABLE IF NOT EXISTS "_movie_genres" (
+  "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   "movie_id" UUID NOT NULL,
   "genre_id" UUID NOT NULL,
-  PRIMARY KEY ("movie_id", "genre_id"),
   FOREIGN KEY ("movie_id") REFERENCES "_movies" ("id"),
   FOREIGN KEY ("genre_id") REFERENCES "_genres" ("id")
 );
 
-CREATE TABLE IF NOT EXISTS "actor_movies" (
+CREATE TABLE IF NOT EXISTS "_actor_movies" (
+  "id" UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   "actor_id" UUID NOT NULL,
   "movie_id" UUID NOT NULL,
-  PRIMARY KEY ("actor_id", "movie_id"),
   FOREIGN KEY ("actor_id") REFERENCES "_actors" ("id"),
   FOREIGN KEY ("movie_id") REFERENCES "_movies" ("id")
 );

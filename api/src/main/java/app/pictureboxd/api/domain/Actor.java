@@ -1,15 +1,14 @@
 package app.pictureboxd.api.domain;
 
-import java.util.UUID;
 import java.io.Serializable;
-import java.util.List;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import java.util.Set;
+import java.util.UUID;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,20 +20,16 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "_roles")
-public class Role implements Serializable {
+@Table(name = "_actors")
+public class Actor implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
 
-  @Column(name = "title", unique = true, nullable = false)
-  private String title;
+  private String name;
+  private Integer age;
 
-  @Column(nullable = true)
-  private String description;
-
-  public List<SimpleGrantedAuthority> getAuthorities() {
-    return List.of(new SimpleGrantedAuthority("ROLE_" + this.title));
-  }
+  @ManyToMany(mappedBy = "casts")
+  private Set<Movie> movies;
 }
